@@ -1,0 +1,228 @@
+    <template>
+
+        <article class="slds-card">
+            <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                <span class="slds-icon_container slds-icon-standard-account" title="account">
+                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                    <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
+                    </svg>
+                    <span class="slds-assistive-text">account</span>
+                </span>
+                </div>
+                <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                    <a href="#" class="slds-card__header-link slds-truncate" title="Accounts">
+                    <span>Quartely Review form</span>
+                    </a>
+                </h2>
+                </div>
+                
+            </header>
+            </div>
+            <div class="slds-card__content slds-p-around_medium">
+                <lightning-combobox
+                label="Role" class="slds-m-bottom_medium slds-size--1-of-3"
+                name="Role__c"
+                options={roleOptions}
+                onchange={handleRoleChange}
+            ></lightning-combobox>
+        
+            <lightning-button label="Show" variant="brand" onclick={fetchReviewData}></lightning-button>
+            <div>
+                <template if:true={wiredReviewData.data}>
+                    <div class="slds-m-around_medium">
+                        <strong>Employee Name :</strong>
+                        <lightning-input variant="label-hidden" class="slds-m-bottom_medium slds-size--1-of-3" label=""  name="Name" onchange={handleInputChange}></lightning-input>
+                        
+                        <div class="slds-scrollable">
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer ">
+    
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th scope="col">Aspects</th>                                
+                                    <th scope="col">Details</th>
+                                    <th scope="col">Weightage</th>
+                                    <th scope="col">Self Comment</th>
+                                    <th scope="col">Self Rating</th>
+                                    <th scope="col">Manager Comment</th>
+                                    <th scope="col">Manager Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Core Responsibility</td>
+                                    <td><p class="break-word">{wiredReviewData.data.fields.Core_Responsibilty__c.value}</p></td>
+                                    <td><p class="break-word">{wiredReviewData.data.fields.Core_Responsibilty_weightage__c.value}</p></td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="Self_rating__c"
+                                            onchange={handleInputChange}
+                                            disabled={employeeReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="self_Rate_core__c"
+                                            onchange={handleInputChange}
+                                            disabled={employeeReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="manager_rating_core_responsibilty__c"
+                                            onchange={handleInputChange}
+                                            disabled={ManagerReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            name="Manager_Rating_core__c"
+                                            onchange={handleInputChange}
+                                            disabled={ManagerReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    
+    
+                                </tr>
+                                <tr>
+                                    <th scope="row">Value Creation</th>
+                                    <td><p class="break-word">{wiredReviewData.data.fields.Value_Creation__c.value}</p></td>
+                                    <td><p class="break-word">{wiredReviewData.data.fields.Value_Creation_weightage__c.value}</p></td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="Self_rating_Value_Creation__c"
+                                            onchange={handleInputChange}
+                                            disabled={employeeReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="Self_Rate_value__c"
+                                            onchange={handleInputChange}
+                                            disabled={employeeReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="manager_comment_value__c"
+                                            onchange={handleInputChange}
+                                            disabled={ManagerReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="Manager_Rating_value__c"
+                                            onchange={handleInputChange}
+                                            disabled={ManagerReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Continuous Improvement</th>
+                                    <td><p class="break-word">{wiredReviewData.data.fields.Continuos_improvement__c.value}</p></td>
+                                    <td><p class="break-word">{wiredReviewData.data.fields.Continuos_improvement_Weightage__c.value}</p></td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="Selft_rating_Continuos_improvement__c"
+                                            onchange={handleInputChange}
+                                            disabled={employeeReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="Self_rate_improvement__c"
+                                            onchange={handleInputChange}
+                                            disabled={employeeReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="manager_rating_Continuous_improvement__c"
+                                            onchange={handleInputChange}
+                                            disabled={ManagerReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="Manager_Rating_improvement__c"
+                                            onchange={handleInputChange}
+                                            disabled={ManagerReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Compliance</th>
+                                    <td><p class="break-word">{wiredReviewData.data.fields.Compliance__c.value}</p></td>
+                                    <td><p class="break-word">{wiredReviewData.data.fields.Compliance_Weightage__c.value}</p></td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="self_rating_compliance__c"
+                                            onchange={handleInputChange}
+                                            disabled={employeeReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="Self_Rate_compliance__c"
+                                            onchange={handleInputChange}
+                                            disabled={employeeReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="manager_rating_Compliance__c"
+                                            onchange={handleInputChange}
+                                            disabled={ManagerReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input
+                                            label=""
+                                            name="Manager_Ratings_compliance__c"
+                                            onchange={handleInputChange}
+                                            disabled={ManagerReviewReadOnly}
+                                        ></lightning-input>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                       
+                    
+                        <div class="slds-p-around_medium">
+                            <lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            </div>
+            
+
+            
+            <footer class="slds-card__footer">
+            <a class="slds-card__footer-action" href="#">Refresh
+                <span class="slds-assistive-text">Accounts</span>
+            </a>
+            </footer>
+        </article>
+
+       
+        
+            
+    </template>
