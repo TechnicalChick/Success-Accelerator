@@ -1,0 +1,99 @@
+<template>
+    <lightning-card title="Review Form">
+        <div>
+            
+        </div>
+        <div class="slds-p-around_medium">
+            <lightning-combobox
+                label="Role"
+                name="Role__c"
+                options={roleOptions}
+                onchange={handleRoleChange}
+            ></lightning-combobox>
+        </div>
+        <template if:true={showGrid}>
+            <table class="slds-table slds-table_bordered slds-table_fixed-layout">
+                <thead>
+                    <tr>
+                        <th scope="col">KRA Details</th>
+                        <th scope="col">Weightage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <lightning-input
+                                label="Core Responsibility"
+                                name="Core_Responsibilty__c"
+                                onchange={handleInputChange}
+                            ></lightning-input>
+                        </td>
+                      
+                        <td>
+                            <lightning-input
+                                label=""
+                                name="Core_Responsibilty_weightage__c"
+                                onchange={handleInputChange}
+                            ></lightning-input>
+                        </td>
+                    </tr>
+                    <!-- Repeat the above row for each field -->
+                    <tr>
+                        <td>
+                            <lightning-input
+                                label="Value Creation"
+                                name="Value_Creation__c"
+                                onchange={handleInputChange}
+                            ></lightning-input>
+                        </td>
+                       
+                        <td>
+                            <lightning-input
+                                label=""
+                                name="Value_Creation_weightage__c"
+                                onchange={handleInputChange}
+                            ></lightning-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <lightning-input
+                                label="Continuous Improvement"
+                                name="Continuos_improvement__c"
+                                onchange={handleInputChange}
+                            ></lightning-input>
+                        </td>
+                      
+                        <td>
+                            <lightning-input
+                                label=""
+                                name="Continuos_improvement_Weightage__c"
+                                onchange={handleInputChange}
+                            ></lightning-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <lightning-input
+                                label="Compliance"
+                                name="Compliance__c"
+                                onchange={handleInputChange}
+                            ></lightning-input>
+                        </td>
+                       
+                        <td>
+                            <lightning-input
+                                label=""
+                                name="Compliance_Weightage__c"
+                                onchange={handleInputChange}
+                            ></lightning-input>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="slds-p-around_medium">
+                <lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
+            </div>
+        </template>
+    </lightning-card>
+</template>
